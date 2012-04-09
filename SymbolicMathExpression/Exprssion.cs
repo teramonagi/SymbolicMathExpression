@@ -7,6 +7,7 @@ namespace SymbolicMathExpression
 {
     public abstract class Expression
     {
+        public abstract void Accept(IVisitor visitor);
         static public Expression operator +(Expression lhs, Expression rhs) { return new Add(lhs, rhs); }
         static public Expression operator -(Expression lhs, Expression rhs) { return new Subtract(lhs, rhs); }
         static public Expression operator *(Expression lhs, Expression rhs) { return new Multiply(lhs, rhs); }
@@ -16,13 +17,15 @@ namespace SymbolicMathExpression
     }
     public class Variable : Expression
     {
-        public Variable(string name){Name = name;}
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
+        public Variable(string name) { Name = name; }
         public string Name { get; set; }
         public override string ToString(){return Name;}
     }
     public class Factor : Expression
     {
-        public Factor(double x){Value = x;}
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
+        public Factor(double x) { Value = x; }
         public double Value {get; set;}
         public override string ToString(){return Value.ToString();}
     }

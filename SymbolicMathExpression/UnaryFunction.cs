@@ -15,25 +15,30 @@ namespace SymbolicMathExpression
         {
             return x + "(" + _x.ToString() + ")";
         }
+        public Expression Operand { get { return _x; } }
         private Expression _x;
     }
     public class ExpInner : UnaryFunction
     {
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
         public override string ToString() { return ToString("Exp"); }
         public ExpInner(Expression x) : base(x) { }
     }
     public class LogInner : UnaryFunction
     {
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
         public override string ToString() { return ToString("Log"); }
         public LogInner(Expression x) : base(x) { }
     }
     public class SinInner : UnaryFunction
     {
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
         public override string ToString() { return ToString("Sin"); }
         public SinInner(Expression x) : base(x) { }
     }
     public class CosInner : UnaryFunction
     {
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
         public override string ToString() { return ToString("Cos"); }
         public CosInner(Expression x) : base(x) { }
     }

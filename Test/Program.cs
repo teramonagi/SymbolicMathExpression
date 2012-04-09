@@ -11,9 +11,18 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            //Write Mathmatical expression
             Variable x = new Variable("x");
-            Expression z = Function.Exp(x) / 2 + 3 * 8 + Function.Sin(1);
+            Expression z = x / 2 + 3;
+            //((x / 2) + 3)
             Console.WriteLine(z);
+            
+            //Evaluation
+            EvaluateVisitor evaluator = new EvaluateVisitor();
+            //Assign x as 4
+            evaluator["x"] = 4;
+            //4 / 2 + 3 = 5!
+            Console.WriteLine(evaluator.Evaluate(z));
         }
     }
 }
