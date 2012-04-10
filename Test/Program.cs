@@ -13,15 +13,15 @@ namespace Test
         {
             //Write Mathmatical expression
             Variable x = new Variable("x");
-            Expression z = x / 2 + 3;
-            //((x / 2) + 3)
+            Expression z = ((-x)^2) + 3;
+            //(((-x)^2) + 3)
             Console.WriteLine(z);
-            
+
             //Evaluation
             EvaluateVisitor evaluator = new EvaluateVisitor();
-            //Assign x as 4
-            evaluator["x"] = 4;
-            //4 / 2 + 3 = 5!
+            //Assign x as 10
+            evaluator["x"] = 10;
+            //(-10)^2 + 3 = 103
             Console.WriteLine(evaluator.Evaluate(z));
         }
     }

@@ -12,6 +12,8 @@ namespace SymbolicMathExpression
         static public Expression operator -(Expression lhs, Expression rhs) { return new Subtract(lhs, rhs); }
         static public Expression operator *(Expression lhs, Expression rhs) { return new Multiply(lhs, rhs); }
         static public Expression operator /(Expression lhs, Expression rhs) { return new Divide(lhs, rhs); }
+        static public Expression operator ^(Expression lhs, Expression rhs) { return new Power(lhs, rhs); }
+        static public Expression operator -(Expression operand) { return new Subtract(0.0, operand); }
         static public implicit operator Expression(double x) { return new Factor(x); }
         static public implicit operator Expression(int x) { return new Factor(x); }
     }
@@ -19,6 +21,7 @@ namespace SymbolicMathExpression
     {
         public override void Accept(IVisitor visitor) { visitor.Visit(this); }
         public Variable(string name) { Name = name; }
+        public Variable() : this(""){}
         public string Name { get; set; }
         public override string ToString(){return Name;}
     }
@@ -26,7 +29,12 @@ namespace SymbolicMathExpression
     {
         public override void Accept(IVisitor visitor) { visitor.Visit(this); }
         public Factor(double x) { Value = x; }
-        public double Value {get; set;}
-        public override string ToString(){return Value.ToString();}
+        public double Value { get; set; }
+        public override string ToString() { return Value.ToString(); }
+    }
+    public class Null : Expression
+    {
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
+        public override string ToString() { return ""; }
     }
 }

@@ -45,4 +45,10 @@ namespace SymbolicMathExpression
         public override string ToString() { return ToStringByInfixNotation("/"); }
         public Divide(Expression lhs, Expression rhs) : base(lhs, rhs) { }
     }
+    public class Power : BinaryFunction
+    {
+        public override void Accept(IVisitor visitor) { visitor.Visit(this); }
+        public override string ToString() { return ToStringByInfixNotation("^"); }
+        public Power(Expression lhs, Expression rhs) : base(lhs, rhs) { }
+    }
 }
